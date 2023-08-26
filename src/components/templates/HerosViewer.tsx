@@ -20,9 +20,9 @@ const HerosViewer: FC<{ allHeros: Hero[] }> = ({ allHeros }) => {
       localStorage.getItem("collapsed") == "false" ? false : true
     );
     heros.setFavorites(
-      ...Array.from(localStorage.getItem("favorites") || []).map((e) =>
-        Number(e)
-      )
+      ...Array.from(localStorage.getItem("favorites") || [])
+        .map((e) => Number(e))
+        .filter((n) => Number.isInteger(n))
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

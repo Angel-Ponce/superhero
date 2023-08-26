@@ -34,8 +34,8 @@ export class Heros {
   }
 
   getFavorites() {
-    return this.favorites.map((idx) =>
-      this.heros.find((hero) => hero.id == idx)
+    return this.favorites.map(
+      (idx) => this.heros.find((h) => h.id == idx) as Hero
     );
   }
 
