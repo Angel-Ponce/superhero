@@ -14,7 +14,7 @@ const Placeholder: FC<{
       )}
     >
       {icon}
-      {text}
+      <p className="text-center">{text}</p>
     </div>
   );
 };
