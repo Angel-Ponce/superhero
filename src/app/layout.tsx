@@ -20,10 +20,10 @@ export default function RootLayout({
       <body
         className={clsx(
           poppins.className,
-          "bg-[#11072F] min-h-screen max-h-screen py-10 px-5 w-full flex justify-center text-white tracking-[0.725px]"
+          "bg-[#11072F] min-h-screen max-h-screen py-10 p-5 sm:px-20 w-full flex justify-center text-white tracking-[0.725px]"
         )}
       >
-        <main className="w-full max-w-[1260px] flex flex-col gap-14">
+        <main className="w-full flex flex-col gap-14">
           <Header />
           {children}
         </main>
