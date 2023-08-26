@@ -7,6 +7,7 @@ import { FC, useState } from "react";
 import clsx from "clsx";
 import { Hero } from "$/utils/getHeros";
 import { HeroCard } from "../molecules";
+import { AutoSizer, Grid } from "react-virtualized";
 
 const FavoriteHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -14,7 +15,7 @@ const FavoriteHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
   return (
     <section
       className={clsx(
-        "w-full flex flex-col gap-8 p-4 rounded-[16px] border-[#6A4DBC70] border ease-ease transition-all duration-300 h-[282px]",
+        "w-full flex flex-col gap-8 p-4 rounded-[16px] border-[#6A4DBC70] border ease-ease transition-all duration-300 h-[312px]",
         collapsed &&
           "bg-[rgba(106,77,188,0.28)] !h-[74px] min-h-[74px] overflow-hidden"
       )}
@@ -46,19 +47,33 @@ const FavoriteHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
           text="You haven’t liked any superhero yet"
         />
       )}
-      {heros.length > 0 && (
-        <div
-          className={clsx(
-            "w-full flex-wrap items-center gap-[15px] max-h-[200px] overflow-y-auto",
-            collapsed ? "hidden" : "flex",
-            heros.length >= 4 ? "justify-center" : "justify-normal"
-          )}
-        >
-          {heros.map((h) => (
-            <HeroCard liked key={h.id} hero={h}></HeroCard>
-          ))}
-        </div>
-      )}
+
+      <div className="w-full max-h-[204px]">
+        {heros.length > 0 && (
+          <AutoSizer disableHeight>
+            {({ width }) => (
+              <Grid
+                columnWidth={300}
+                rowHeight={204}
+                columnCount={4}
+                rowCount={Math.ceil(heros.length / 4)}
+                width={width}
+                height={204}
+                cellRenderer={({ key, rowIndex, columnIndex, style }) => (
+                  <div key={key} style={{ ...style, padding: "7.5px" }}>
+                    {heros[columnIndex + rowIndex * 4] && (
+                      <HeroCard
+                        liked
+                        hero={heros[columnIndex + rowIndex * 4]}
+                      />
+                    )}
+                  </div>
+                )}
+              />
+            )}
+          </AutoSizer>
+        )}
+      </div>
     </section>
   );
 };

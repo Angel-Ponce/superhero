@@ -6,6 +6,7 @@ import { Hero } from "$/utils/getHeros";
 import { HeroCard } from "../molecules";
 import clsx from "clsx";
 import { heros as storedHeros } from "$/stores/heros";
+import { AutoSizer, Grid } from "react-virtualized";
 
 const AllSuperHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
   const [search, setSearch] = useState("");
@@ -28,16 +29,28 @@ const AllSuperHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
           />
         </div>
       </div>
-      <div
-        className={clsx(
-          "w-full flex flex-wrap items-center gap-[15px] max-h-[467px] overflow-y-auto",
-          heros.length >= 4 ? "justify-center" : "justify-normal"
+      <AutoSizer>
+        {({ width }) => (
+          <Grid
+            columnWidth={300}
+            rowHeight={204}
+            columnCount={4}
+            rowCount={Math.ceil(heros.length / 4)}
+            width={width}
+            height={204 * 3.2}
+            cellRenderer={({ key, rowIndex, columnIndex, style }) => (
+              <div key={key} style={{ ...style, padding: "7.5px" }}>
+                {heros[columnIndex + rowIndex * 4] && (
+                  <HeroCard hero={heros[columnIndex + rowIndex * 4]} />
+                )}
+              </div>
+            )}
+            style={{
+              paddingLeft: `${(width - 300 * 4) / 2}px`,
+            }}
+          />
         )}
-      >
-        {heros.map((h) => (
-          <HeroCard key={h.id} hero={h}></HeroCard>
-        ))}
-      </div>
+      </AutoSizer>
     </div>
   );
 };

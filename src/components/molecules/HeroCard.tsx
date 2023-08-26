@@ -23,10 +23,16 @@ const HeroCard: FC<{ hero: Hero; liked?: boolean }> = ({
 
   return (
     <div
-      className={`w-[285px] h-[174px] rounded-[16px] p-4 flex gap-4 items-start relative bg-[rgba(54,44,106,0.65)] overflow-hidden`}
+      className={`w-full h-full rounded-[16px] p-4 flex gap-4 items-start relative bg-[rgba(54,44,106,0.65)] overflow-hidden`}
     >
       <div className="relative">
-        <Image src={hero.images.lg} alt={hero.name} width={105} height={140} />
+        <Image
+          src={hero.images.lg}
+          alt={hero.name}
+          className="rounded-[12px]"
+          width={105}
+          height={140}
+        />
         <Button
           onClick={toggleLike}
           className="absolute -bottom-2 -right-2 w-12 h-12 rounded-full bg-purple flex items-center justify-center"
