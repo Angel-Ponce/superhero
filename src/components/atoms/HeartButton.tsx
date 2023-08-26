@@ -17,7 +17,7 @@ const HeartButton: FC<{
 
   if (size == "small")
     return (
-      <Image src="/small-heart.svg" alt="small-heart" width={13} height={12} />
+      <Image src="/small-heart.svg" alt="small-heart" width={13} height={13} />
     );
 
   if (size == "medium")
@@ -26,13 +26,13 @@ const HeartButton: FC<{
         src="/medium-heart.svg"
         alt="medium-heart"
         width={17}
-        height={16}
+        height={17}
       />
     );
 
   if (size == "big")
     return (
-      <Image src="/big-heart.svg" alt="big-heart" width={36} height={35} />
+      <Image src="/big-heart.svg" alt="big-heart" width={36} height={36} />
     );
 };
 
