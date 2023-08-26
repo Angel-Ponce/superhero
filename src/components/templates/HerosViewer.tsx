@@ -19,10 +19,12 @@ const HerosViewer: FC<{ allHeros: Hero[] }> = ({ allHeros }) => {
     heros.setCollapsed(
       localStorage.getItem("collapsed") == "false" ? false : true
     );
+    const favorites = localStorage.getItem("favorites") || "";
     heros.setFavorites(
-      ...Array.from(localStorage.getItem("favorites") || [])
-        .map((e) => Number(e))
-        .filter((n) => Number.isInteger(n))
+      ...favorites
+        .split(",")
+        .filter((n) => !Number.isNaN(n))
+        .map((n) => Number(n))
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
