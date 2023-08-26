@@ -3,10 +3,11 @@
 import Image from "next/image";
 import HeartButton from "../atoms/HeartButton";
 import { Button, Placeholder } from "../atoms";
-import { useState } from "react";
+import { FC, useState } from "react";
 import clsx from "clsx";
+import { Hero } from "$/utils/getHeros";
 
-const FavoriteHeros = () => {
+const FavoriteHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
   const [collapsed, setCollapsed] = useState(false);
 
   return (

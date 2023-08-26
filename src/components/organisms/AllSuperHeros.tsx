@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { FC, useState } from "react";
 import { SearchInput } from "../atoms";
+import { Hero } from "$/utils/getHeros";
 
-const AllSuperHeros = () => {
+const AllSuperHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
   const [search, setSearch] = useState("");
 
   return (
@@ -19,6 +20,9 @@ const AllSuperHeros = () => {
             onCancel={() => setSearch("")}
           />
         </div>
+      </div>
+      <div className="w-full justify-center items-center flex-wrap gap-[15px]">
+        here put superheros grid
       </div>
     </div>
   );

@@ -1,15 +1,10 @@
 import { getHeros } from "$/utils";
-import { AllSuperHeros, FavoriteHeros } from "../organisms";
+import HerosViewer from "./HerosViewer";
 
 const Heros = async () => {
-  const heros = await getHeros();
+  const allHeros = await getHeros();
 
-  return (
-    <>
-      <FavoriteHeros />
-      <AllSuperHeros />
-    </>
-  );
+  return <HerosViewer allHeros={allHeros || []} />;
 };
 
 export default Heros;
