@@ -5,11 +5,16 @@ import Image from "next/image";
 import { FC, InputHTMLAttributes, useState } from "react";
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
-  className: string;
-  onCancel: () => void;
+  className?: string;
+  onCancel?: () => void;
 }
 
-const SearchInput: FC<InputProps> = ({ className = "", onCancel, ...rest }) => {
+const SearchInput: FC<InputProps> = ({
+  className = "",
+  onCancel,
+  value,
+  ...rest
+}) => {
   return (
     <div className="w-full relative">
       <input
@@ -20,13 +25,19 @@ const SearchInput: FC<InputProps> = ({ className = "", onCancel, ...rest }) => {
         )}
         placeholder="Search"
         {...rest}
+        value={value}
       />
       <span className="absolute top-2 left-2">
         <Image src="/search.svg" alt="search" width={24} height={24} />
       </span>
-      <span className="absolute top-2 right-2" onClick={onCancel}>
-        <Image src="/cancel.svg" alt="cancel" width={24} height={24} />
-      </span>
+      {value && (
+        <span
+          className="absolute top-2 right-2 cursor-pointer"
+          onClick={onCancel}
+        >
+          <Image src="/cancel.svg" alt="cancel" width={24} height={24} />
+        </span>
+      )}
     </div>
   );
 };
