@@ -22,7 +22,7 @@ const AllSuperHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
           />
         </div>
       </div>
-      <div className="w-full justify-center items-center flex flex-wrap gap-[15px] max-h-[467px] overflow-y-auto">
+      <div className="w-full flex flex-wrap items-center justify-center gap-[15px] max-h-[467px] overflow-y-auto">
         {heros.map((h) => (
           <HeroCard key={h.id} hero={h}></HeroCard>
         ))}

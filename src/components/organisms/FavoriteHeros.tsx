@@ -49,7 +49,7 @@ const FavoriteHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
       {heros.length > 0 && (
         <div
           className={clsx(
-            "w-full items-center flex-wrap gap-[15px] max-h-[200px] overflow-y-auto",
+            "w-full flex-wrap items-center gap-[15px] max-h-[200px] overflow-y-auto",
             collapsed ? "hidden" : "flex"
           )}
         >

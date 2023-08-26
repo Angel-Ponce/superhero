@@ -23,7 +23,7 @@ export default function RootLayout({
           "bg-[#11072F] min-h-screen max-h-screen py-10 px-5 w-full flex justify-center text-white tracking-[0.725px]"
         )}
       >
-        <main className="w-full max-w-[1219px] flex flex-col gap-14">
+        <main className="w-full max-w-[1250px] flex flex-col gap-14">
           <Header />
           {children}
         </main>
