@@ -3,14 +3,19 @@
 import Image from "next/image";
 import HeartButton from "../atoms/HeartButton";
 import { Button, Placeholder } from "../atoms";
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import clsx from "clsx";
 import { Hero } from "$/utils/getHeros";
 import { HeroCard } from "../molecules";
 import { AutoSizer, Grid } from "react-virtualized";
+import { heros as storedHeros } from "$/stores/heros";
 
 const FavoriteHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
-  const [collapsed, setCollapsed] = useState(false);
+  const [collapsed, setCollapsed] = useState(storedHeros.collapsed);
+
+  useEffect(() => {
+    storedHeros.setCollapsed(collapsed);
+  }, [collapsed]);
 
   return (
     <section
