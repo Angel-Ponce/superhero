@@ -12,11 +12,11 @@ const FavoriteHeros = () => {
   return (
     <section
       className={clsx(
-        "w-full flex flex-col p-4 rounded-[16px] border-[#6A4DBC70] border ease-ease transition-all duration-300 h-[277px]",
+        "w-full flex flex-col gap-8 p-4 rounded-[16px] border-[#6A4DBC70] border ease-ease transition-all duration-300 h-[277px]",
         collapsed && "bg-[rgba(106,77,188,0.28)] !h-[74px] overflow-hidden"
       )}
     >
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex items-center justify-between">
         <div className="flex items-center gap-5">
           <div className="w-9 h-9 rounded-full bg-purple flex justify-center items-center">
             <HeartButton size="small" />
