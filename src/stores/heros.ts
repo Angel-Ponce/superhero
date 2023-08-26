@@ -10,6 +10,7 @@ export class Heros {
   favorites: number[] = [];
   search = "";
   collapsed = false;
+  likedRecentlyId: number | null = null;
 
   constructor() {
     makeAutoObservable(this);
@@ -20,17 +21,20 @@ export class Heros {
   }
 
   like(id: number) {
-    this.favorites = [id, ...this.favorites];
+    this.favorites = [...this.favorites, id];
+    this.likedRecentlyId = id;
     write("favorites", this.favorites);
   }
 
   unlike(id: number) {
     this.favorites = this.favorites.filter((idx) => idx != id);
+    this.likedRecentlyId = this.favorites.at(-1) || null;
     write("favorites", this.favorites);
   }
 
   setFavorites(...ids: number[]) {
     this.favorites = ids;
+    this.likedRecentlyId = this.favorites.at(-1) || null;
   }
 
   getFavorites() {

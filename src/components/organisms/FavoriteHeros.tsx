@@ -10,10 +10,11 @@ import { HeroCard } from "../molecules";
 import { AutoSizer, Grid } from "react-virtualized";
 import { heros as storedHeros } from "$/stores/heros";
 
-const FavoriteHeros: FC<{ heros: Hero[]; collapsed: boolean }> = ({
-  heros,
-  collapsed = false,
-}) => {
+const FavoriteHeros: FC<{
+  heros: Hero[];
+  collapsed: boolean;
+  likedRecentlyId: number | null;
+}> = ({ heros, collapsed = false, likedRecentlyId = null }) => {
   return (
     <section
       className={clsx(
@@ -54,6 +55,7 @@ const FavoriteHeros: FC<{ heros: Hero[]; collapsed: boolean }> = ({
         <AutoSizer>
           {({ width }) => (
             <Grid
+              id="favorites-virtualized-grid"
               columnWidth={300}
               rowHeight={189}
               columnCount={Math.floor(width / 305) || 1}
@@ -75,7 +77,12 @@ const FavoriteHeros: FC<{ heros: Hero[]; collapsed: boolean }> = ({
                             rowIndex * (Math.floor(width / 305) || 1)
                         ]
                       }
-                      likedRecently={columnIndex == 0 && rowIndex == 0}
+                      likedRecently={
+                        heros[
+                          columnIndex +
+                            rowIndex * (Math.floor(width / 305) || 1)
+                        ].id == likedRecentlyId
+                      }
                     />
                   )}
                 </div>

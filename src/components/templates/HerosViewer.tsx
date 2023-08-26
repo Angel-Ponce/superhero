@@ -8,7 +8,11 @@ import { Hero } from "$/utils/getHeros";
 
 const HerosObservable = observer(({ heros }: { heros: HerosClass }) => (
   <>
-    <FavoriteHeros heros={heros.getFavorites()} collapsed={heros.collapsed} />
+    <FavoriteHeros
+      heros={heros.getFavorites()}
+      collapsed={heros.collapsed}
+      likedRecentlyId={heros.likedRecentlyId}
+    />
     <AllSuperHeros heros={heros.getHeros()} search={heros.search} />
   </>
 ));
@@ -23,7 +27,7 @@ const HerosViewer: FC<{ allHeros: Hero[] }> = ({ allHeros }) => {
     heros.setFavorites(
       ...favorites
         .split(",")
-        .filter((n) => !Number.isNaN(n))
+        .filter((n) => !Number.isNaN(n) && Number(n) > 0)
         .map((n) => Number(n))
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
