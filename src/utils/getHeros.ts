@@ -3,6 +3,8 @@
  * https://akabab.github.io/superhero-api/api/#id
  */
 
+import wait from "wait";
+
 export interface Images {
   xs: string;
   sm: string;
@@ -36,6 +38,8 @@ const getHeros = async (): Promise<Hero[] | null> => {
   const res = await fetch(process.env.API_URL);
 
   const data = await res.json();
+
+  await wait(0);
 
   return data;
 };

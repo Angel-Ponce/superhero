@@ -3,7 +3,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Header } from "$/components/atoms";
-import { getHeros } from "$/utils";
 
 const poppins = Poppins({ weight: "400", subsets: ["latin"] });
 
@@ -11,13 +10,11 @@ export const metadata: Metadata = {
   title: "Super Heros App",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const heros = await getHeros();
-
   return (
     <html lang="en">
       <body
@@ -29,7 +26,6 @@ export default async function RootLayout({
         <main className="w-full max-w-[1185px] flex flex-col gap-10">
           <Header />
           {children}
-          {JSON.stringify(heros)}
         </main>
       </body>
     </html>
