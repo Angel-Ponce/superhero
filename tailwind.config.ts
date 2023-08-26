@@ -11,6 +11,9 @@ const config: Config = {
       colors: {
         purple: "#6A4DBC",
       },
+      transitionTimingFunction: {
+        ease: "ease",
+      },
     },
   },
   plugins: [],

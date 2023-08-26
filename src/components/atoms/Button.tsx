@@ -1,16 +1,20 @@
 "use client";
 
-import { FC, ReactNode } from "react";
-import Ripples from "react-ripples";
+import clsx from "clsx";
+import { FC, MouseEventHandler, ReactNode } from "react";
 
-const Button: FC<{ children: ReactNode; className: string }> = ({
-  children,
-  className,
-}) => {
+const Button: FC<{
+  children: ReactNode;
+  className: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+}> = ({ children, className, onClick }) => {
   return (
-    <Ripples>
-      <button className={className}>{children}</button>
-    </Ripples>
+    <button
+      onClick={onClick}
+      className={clsx(className, "active:scale-50 duration-300")}
+    >
+      {children}
+    </button>
   );
 };
 
