@@ -1,5 +1,7 @@
+import { Skeleton } from "$/components/atoms";
+
 const Loading = () => {
-  return <div className="w-full h-screen bg-red-300"></div>;
+  return <>loading</>;
 };
 
 export default Loading;
