@@ -1,3 +1,4 @@
 import Header from "./Header";
+import Skeleton from "./Skeleton";
 
-export { Header };
+export { Header, Skeleton };
