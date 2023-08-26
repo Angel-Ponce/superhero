@@ -1,4 +1,5 @@
 import { getHeros } from "$/utils";
+import { SearchInput } from "../atoms";
 import { AllSuperHeros, FavoriteHeros } from "../organisms";
 
 const Heros = async () => {
@@ -7,6 +8,7 @@ const Heros = async () => {
   return (
     <>
       <FavoriteHeros />
+      <SearchInput></SearchInput>
       <AllSuperHeros />
     </>
   );
