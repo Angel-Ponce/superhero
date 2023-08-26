@@ -50,7 +50,8 @@ const FavoriteHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
         <div
           className={clsx(
             "w-full flex-wrap items-center gap-[15px] max-h-[200px] overflow-y-auto",
-            collapsed ? "hidden" : "flex"
+            collapsed ? "hidden" : "flex",
+            heros.length >= 4 ? "justify-center" : "justify-normal"
           )}
         >
           {heros.map((h) => (

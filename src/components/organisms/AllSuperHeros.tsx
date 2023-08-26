@@ -1,12 +1,18 @@
 "use client";
 
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { SearchInput } from "../atoms";
 import { Hero } from "$/utils/getHeros";
 import { HeroCard } from "../molecules";
+import clsx from "clsx";
+import { heros as storedHeros } from "$/stores/heros";
 
 const AllSuperHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
   const [search, setSearch] = useState("");
+
+  useEffect(() => {
+    storedHeros.setSearch(search);
+  }, [search]);
 
   return (
     <div className="flex flex-col gap-8">
@@ -22,7 +28,12 @@ const AllSuperHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
           />
         </div>
       </div>
-      <div className="w-full flex flex-wrap items-center justify-center gap-[15px] max-h-[467px] overflow-y-auto">
+      <div
+        className={clsx(
+          "w-full flex flex-wrap items-center gap-[15px] max-h-[467px] overflow-y-auto",
+          heros.length >= 4 ? "justify-center" : "justify-normal"
+        )}
+      >
         {heros.map((h) => (
           <HeroCard key={h.id} hero={h}></HeroCard>
         ))}

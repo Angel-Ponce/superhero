@@ -4,6 +4,7 @@ import { makeAutoObservable } from "mobx";
 export class Heros {
   heros: Hero[] = [];
   favorites: number[] = [];
+  search = "";
 
   constructor() {
     makeAutoObservable(this);
@@ -30,7 +31,18 @@ export class Heros {
   }
 
   getHeros() {
-    return this.heros.filter((h) => !this.favorites.includes(h.id));
+    return this.heros.filter(
+      (h) =>
+        !this.favorites.includes(h.id) &&
+        (h.name.toLowerCase().includes(this.search.toLowerCase()) ||
+          h.biography.fullName
+            .toLowerCase()
+            .includes(this.search.toLowerCase()))
+    );
+  }
+
+  setSearch(value: string) {
+    this.search = value;
   }
 }
 
