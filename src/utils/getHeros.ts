@@ -39,7 +39,7 @@ const getHeros = async (): Promise<Hero[] | null> => {
 
   const data = await res.json();
 
-  await wait(5000);
+  await wait(0);
 
   return data;
 };
