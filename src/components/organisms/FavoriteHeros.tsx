@@ -52,7 +52,7 @@ const FavoriteHeros: FC<{ heros: Hero[]; collapsed: boolean }> = ({
 
       <div className="w-full max-h-[204px]">
         {heros.length > 0 && (
-          <AutoSizer disableHeight>
+          <AutoSizer>
             {({ width }) => (
               <Grid
                 columnWidth={300}
@@ -67,6 +67,7 @@ const FavoriteHeros: FC<{ heros: Hero[]; collapsed: boolean }> = ({
                       <HeroCard
                         liked
                         hero={heros[columnIndex + rowIndex * 4]}
+                        likedRecently={columnIndex == 0 && rowIndex == 0}
                       />
                     )}
                   </div>

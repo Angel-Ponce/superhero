@@ -34,7 +34,9 @@ export class Heros {
   }
 
   getFavorites() {
-    return this.heros.filter((h) => this.favorites.includes(h.id));
+    return this.favorites.map((idx) =>
+      this.heros.find((hero) => hero.id == idx)
+    );
   }
 
   getHeros() {

@@ -8,10 +8,11 @@ import { Button } from "../atoms";
 import HeartButton from "../atoms/HeartButton";
 import { heros as storedHeros } from "$/stores/heros";
 
-const HeroCard: FC<{ hero: Hero; liked?: boolean }> = ({
-  hero,
-  liked = false,
-}) => {
+const HeroCard: FC<{
+  hero: Hero;
+  liked?: boolean;
+  likedRecently?: boolean;
+}> = ({ hero, liked = false, likedRecently = false }) => {
   const toggleLike = () => {
     if (liked) {
       storedHeros.unlike(hero.id);
@@ -23,8 +24,13 @@ const HeroCard: FC<{ hero: Hero; liked?: boolean }> = ({
 
   return (
     <div
-      className={`w-full h-full rounded-[16px] p-4 flex gap-4 items-start relative bg-[rgba(54,44,106,0.65)] overflow-hidden`}
+      className={`w-full h-full rounded-[16px] p-4 flex gap-4 items-start relative bg-[rgba(54,44,106,0.65)]`}
     >
+      {likedRecently && (
+        <div className="absolute -top-1 -right-1 bg-purple rounded-[6px] text-[10px] p-1">
+          Liked recently
+        </div>
+      )}
       <div className="relative">
         <Image
           src={hero.images.lg}
@@ -51,13 +57,15 @@ const HeroCard: FC<{ hero: Hero; liked?: boolean }> = ({
           <p className="font-light text-white text-opacity-50">/ 10</p>
         </div>
       </div>
-      <div className="absolute top-0 left-0 w-full blur-[13.5px] h-full z-[-1]">
-        <Image
-          className="object-center object-cover"
-          src={hero.images.lg}
-          alt={hero.name}
-          fill={true}
-        />
+      <div className="absolute top-0 left-0 w-full h-full overflow-clip z-[-1] rounded-[16px]">
+        <div className="absolute top-0 left-0 w-full h-full blur-[13.5px] z-[-1]">
+          <Image
+            className="object-center object-cover rounded-[16px]"
+            src={hero.images.lg}
+            alt={hero.name}
+            fill={true}
+          />
+        </div>
       </div>
     </div>
   );
