@@ -5,7 +5,8 @@ import { Suspense } from "react";
 export default function Home() {
   return (
     <Suspense fallback={<HerosLoader />}>
-      <Heros />
+      <HerosLoader></HerosLoader>
+      {/* <Heros /> */}
     </Suspense>
   );
 }
