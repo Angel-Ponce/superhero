@@ -11,7 +11,7 @@ const Button: FC<{
   return (
     <button
       onClick={onClick}
-      className={clsx(className, "active:scale-75 duration-300")}
+      className={clsx(className, "active:scale-90 duration-300")}
     >
       {children}
     </button>

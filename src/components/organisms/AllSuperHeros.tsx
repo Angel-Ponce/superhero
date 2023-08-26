@@ -3,6 +3,7 @@
 import { FC, useState } from "react";
 import { SearchInput } from "../atoms";
 import { Hero } from "$/utils/getHeros";
+import { HeroCard } from "../molecules";
 
 const AllSuperHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
   const [search, setSearch] = useState("");
@@ -21,8 +22,10 @@ const AllSuperHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
           />
         </div>
       </div>
-      <div className="w-full justify-center items-center flex-wrap gap-[15px]">
-        here put superheros grid
+      <div className="w-full justify-center items-center flex flex-wrap gap-[15px]">
+        {heros.map((h) => (
+          <HeroCard key={h.id} hero={h}></HeroCard>
+        ))}
       </div>
     </div>
   );

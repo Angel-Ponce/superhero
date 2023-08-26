@@ -1,3 +1,4 @@
+import { getHeroPower } from "./getHeroPower";
 import { getHeros } from "./getHeros";
 
-export { getHeros };
+export { getHeros, getHeroPower };
