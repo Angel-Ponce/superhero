@@ -6,6 +6,7 @@ import { Button, Placeholder } from "../atoms";
 import { FC, useState } from "react";
 import clsx from "clsx";
 import { Hero } from "$/utils/getHeros";
+import { HeroCard } from "../molecules";
 
 const FavoriteHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
   const [collapsed, setCollapsed] = useState(false);
@@ -13,8 +14,9 @@ const FavoriteHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
   return (
     <section
       className={clsx(
-        "w-full flex flex-col gap-8 p-4 rounded-[16px] border-[#6A4DBC70] border ease-ease transition-all duration-300 h-[277px]",
-        collapsed && "bg-[rgba(106,77,188,0.28)] !h-[74px] overflow-hidden"
+        "w-full flex flex-col gap-8 p-4 rounded-[16px] border-[#6A4DBC70] border ease-ease transition-all duration-300 h-[282px]",
+        collapsed &&
+          "bg-[rgba(106,77,188,0.28)] !h-[74px] min-h-[74px] overflow-hidden"
       )}
     >
       <div className="flex items-center justify-between">
@@ -37,11 +39,25 @@ const FavoriteHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
           />
         </Button>
       </div>
-      <Placeholder
-        className={clsx(collapsed ? "hidden" : "block")}
-        icon={<HeartButton size="big" />}
-        text="You haven’t liked any superhero yet"
-      />
+      {heros.length == 0 && (
+        <Placeholder
+          className={clsx(collapsed ? "hidden" : "block")}
+          icon={<HeartButton size="big" />}
+          text="You haven’t liked any superhero yet"
+        />
+      )}
+      {heros.length > 0 && (
+        <div
+          className={clsx(
+            "w-full items-center flex-wrap gap-[15px] max-h-[200px] overflow-y-auto",
+            collapsed ? "hidden" : "flex"
+          )}
+        >
+          {heros.map((h) => (
+            <HeroCard liked key={h.id} hero={h}></HeroCard>
+          ))}
+        </div>
+      )}
     </section>
   );
 };

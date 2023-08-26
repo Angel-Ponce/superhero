@@ -13,15 +13,15 @@ export class Heros {
     this.heros = heros;
   }
 
-  addFavorite(id: number) {
+  like(id: number) {
     this.favorites = [id, ...this.favorites];
   }
 
-  removeFavorite(id: number) {
+  unlike(id: number) {
     this.favorites = this.favorites.filter((idx) => idx != id);
   }
 
-  setFavorite(...ids: number[]) {
+  setFavorites(...ids: number[]) {
     this.favorites = ids;
   }
 

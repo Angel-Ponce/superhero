@@ -1,19 +1,37 @@
+"use client";
+
 import { getHeroPower } from "$/utils";
 import { Hero } from "$/utils/getHeros";
 import Image from "next/image";
 import { FC } from "react";
 import { Button } from "../atoms";
 import HeartButton from "../atoms/HeartButton";
+import { heros as storedHeros } from "$/stores/heros";
 
-const HeroCard: FC<{ hero: Hero }> = ({ hero }) => {
+const HeroCard: FC<{ hero: Hero; liked?: boolean }> = ({
+  hero,
+  liked = false,
+}) => {
+  const toggleLike = () => {
+    if (liked) {
+      storedHeros.unlike(hero.id);
+      return;
+    }
+
+    storedHeros.like(hero.id);
+  };
+
   return (
     <div
       className={`w-[285px] h-[174px] rounded-[16px] p-4 flex gap-4 items-start relative bg-[rgba(54,44,106,0.65)] overflow-hidden`}
     >
       <div className="relative">
         <Image src={hero.images.lg} alt={hero.name} width={105} height={140} />
-        <Button className="absolute -bottom-2 -right-2 w-12 h-12 rounded-full bg-purple flex items-center justify-center">
-          <HeartButton size="medium" />
+        <Button
+          onClick={toggleLike}
+          className="absolute -bottom-2 -right-2 w-12 h-12 rounded-full bg-purple flex items-center justify-center"
+        >
+          <HeartButton size="medium" filled={liked} />
         </Button>
       </div>
       <div className="flex-1 flex flex-col gap-1">
