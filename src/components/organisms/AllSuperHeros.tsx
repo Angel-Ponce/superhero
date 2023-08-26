@@ -29,20 +29,20 @@ const AllSuperHeros: FC<{ heros: Hero[]; search: string }> = ({
         {({ width }) => (
           <Grid
             columnWidth={300}
-            rowHeight={204}
-            columnCount={Math.floor(width / 300) || 1}
-            rowCount={Math.ceil(heros.length / (Math.floor(width / 300) || 1))}
+            rowHeight={189}
+            columnCount={Math.floor(width / 305) || 1}
+            rowCount={Math.ceil(heros.length / (Math.floor(width / 305) || 1))}
             width={width}
-            height={204 * 2.2}
+            height={189 * 3.2}
             cellRenderer={({ key, rowIndex, columnIndex, style }) => (
               <div key={key} style={{ ...style, padding: "7.5px" }}>
                 {heros[
-                  columnIndex + rowIndex * (Math.floor(width / 300) || 1)
+                  columnIndex + rowIndex * (Math.floor(width / 305) || 1)
                 ] && (
                   <HeroCard
                     hero={
                       heros[
-                        columnIndex + rowIndex * (Math.floor(width / 300) || 1)
+                        columnIndex + rowIndex * (Math.floor(width / 305) || 1)
                       ]
                     }
                   />
@@ -51,7 +51,7 @@ const AllSuperHeros: FC<{ heros: Hero[]; search: string }> = ({
             )}
             style={{
               paddingLeft: `${
-                (width - 300 * (Math.floor(width / 300) || 1)) / 2
+                (width - 300 * (Math.floor(width / 305) || 1)) / 2
               }px`,
             }}
           />
