@@ -31,7 +31,6 @@ export class Heros {
 
   setFavorites(...ids: number[]) {
     this.favorites = ids;
-    write("favorites", this.favorites);
   }
 
   getFavorites() {

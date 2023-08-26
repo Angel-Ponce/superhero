@@ -3,18 +3,29 @@
 import { observer } from "mobx-react-lite";
 import { AllSuperHeros, FavoriteHeros } from "../organisms";
 import { Heros as HerosClass, heros } from "$/stores/heros";
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import { Hero } from "$/utils/getHeros";
 
 const HerosObservable = observer(({ heros }: { heros: HerosClass }) => (
   <>
-    <FavoriteHeros heros={heros.getFavorites()} />
-    <AllSuperHeros heros={heros.getHeros()} />
+    <FavoriteHeros heros={heros.getFavorites()} collapsed={heros.collapsed} />
+    <AllSuperHeros heros={heros.getHeros()} search={heros.search} />
   </>
 ));
 
 const HerosViewer: FC<{ allHeros: Hero[] }> = ({ allHeros }) => {
-  heros.setHeros(allHeros);
+  useEffect(() => {
+    heros.setHeros(allHeros);
+    heros.setCollapsed(
+      localStorage.getItem("collapsed") == "false" ? false : true
+    );
+    heros.setFavorites(
+      ...Array.from(localStorage.getItem("favorites") || []).map((e) =>
+        Number(e)
+      )
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <HerosObservable heros={heros} />;
 };

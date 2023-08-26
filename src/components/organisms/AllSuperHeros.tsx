@@ -1,20 +1,16 @@
 "use client";
 
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import { SearchInput } from "../atoms";
 import { Hero } from "$/utils/getHeros";
 import { HeroCard } from "../molecules";
-import clsx from "clsx";
 import { heros as storedHeros } from "$/stores/heros";
 import { AutoSizer, Grid } from "react-virtualized";
 
-const AllSuperHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
-  const [search, setSearch] = useState("");
-
-  useEffect(() => {
-    storedHeros.setSearch(search);
-  }, [search]);
-
+const AllSuperHeros: FC<{ heros: Hero[]; search: string }> = ({
+  heros,
+  search = "",
+}) => {
   return (
     <div className="flex flex-col gap-8">
       <div className="flex items-center justify-between gap-5 flex-wrap">
@@ -24,8 +20,8 @@ const AllSuperHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
         <div className="flex-1 max-w-[355px] min-w-[150px]">
           <SearchInput
             value={search}
-            onChange={(e) => setSearch(e.currentTarget.value)}
-            onCancel={() => setSearch("")}
+            onChange={(e) => storedHeros.setSearch(e.currentTarget.value)}
+            onCancel={() => storedHeros.setSearch("")}
           />
         </div>
       </div>

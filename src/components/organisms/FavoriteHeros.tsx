@@ -3,20 +3,17 @@
 import Image from "next/image";
 import HeartButton from "../atoms/HeartButton";
 import { Button, Placeholder } from "../atoms";
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import clsx from "clsx";
 import { Hero } from "$/utils/getHeros";
 import { HeroCard } from "../molecules";
 import { AutoSizer, Grid } from "react-virtualized";
 import { heros as storedHeros } from "$/stores/heros";
 
-const FavoriteHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
-  const [collapsed, setCollapsed] = useState(storedHeros.collapsed);
-
-  useEffect(() => {
-    storedHeros.setCollapsed(collapsed);
-  }, [collapsed]);
-
+const FavoriteHeros: FC<{ heros: Hero[]; collapsed: boolean }> = ({
+  heros,
+  collapsed = false,
+}) => {
   return (
     <section
       className={clsx(
@@ -33,7 +30,7 @@ const FavoriteHeros: FC<{ heros: Hero[] }> = ({ heros }) => {
           <h2 className="font-bold text-[28px]">Liked</h2>
         </div>
         <Button
-          onClick={() => setCollapsed((c) => !c)}
+          onClick={() => storedHeros.setCollapsed(!collapsed)}
           className="w-10 h-10 rounded-full flex justify-center items-center bg-[rgba(255,255,255,0.10)]"
         >
           <Image
