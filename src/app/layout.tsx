@@ -20,11 +20,13 @@ export default function RootLayout({
       <body
         className={clsx(
           poppins.className,
-          "bg-[#11072F] min-h-screen max-h-screen p-10"
+          "bg-[#11072F] min-h-screen max-h-screen p-10 w-full flex justify-center"
         )}
       >
-        <Header />
-        {children}
+        <main className="w-full max-w-7xl">
+          <Header />
+          {children}
+        </main>
       </body>
     </html>
   );
