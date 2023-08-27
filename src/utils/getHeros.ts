@@ -35,7 +35,7 @@ export interface Hero {
 }
 
 const getHeros = async (): Promise<Hero[] | null> => {
-  const res = await fetch(process.env.API_URL);
+  const res = await fetch(process.env.API_URL, { cache: "no-cache" });
 
   const data = await res.json();
 
