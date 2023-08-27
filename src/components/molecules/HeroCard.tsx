@@ -19,6 +19,11 @@ const HeroCard: FC<{
       return;
     }
 
+    setTimeout(() => {
+      const container = document.getElementById("favorites-virtualized-grid");
+      container?.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
+    }, 0);
+
     storedHeros.like(hero.id);
   };
 
