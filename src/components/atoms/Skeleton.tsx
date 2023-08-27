@@ -11,7 +11,7 @@ const Skeleton: FC<{
     <ContentLoader
       speed={1.5}
       backgroundColor="rgba(106, 77, 188, 0.24)"
-      foregroundColor="rgba(106, 77, 188, 0.24)"
+      foregroundColor="rgba(106, 77, 188, 0.48)"
       width={circle ? width * 2 : width}
       height={circle ? width * 2 : height}
     >
