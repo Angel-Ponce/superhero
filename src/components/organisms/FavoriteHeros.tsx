@@ -58,29 +58,29 @@ const FavoriteHeros: FC<{
               id="favorites-virtualized-grid"
               columnWidth={300}
               rowHeight={189}
-              columnCount={Math.floor(width / 307) || 1}
+              columnCount={Math.floor(width / 308) || 1}
               rowCount={Math.ceil(
-                heros.length / (Math.floor(width / 307) || 1)
+                heros.length / (Math.floor(width / 308) || 1)
               )}
               width={width}
               height={189}
               cellRenderer={({ key, rowIndex, columnIndex, style }) => (
                 <div key={key} style={{ ...style, padding: "7.5px" }}>
                   {heros[
-                    columnIndex + rowIndex * (Math.floor(width / 307) || 1)
+                    columnIndex + rowIndex * (Math.floor(width / 308) || 1)
                   ] && (
                     <HeroCard
                       liked
                       hero={
                         heros[
                           columnIndex +
-                            rowIndex * (Math.floor(width / 307) || 1)
+                            rowIndex * (Math.floor(width / 308) || 1)
                         ]
                       }
                       likedRecently={
                         heros[
                           columnIndex +
-                            rowIndex * (Math.floor(width / 307) || 1)
+                            rowIndex * (Math.floor(width / 308) || 1)
                         ].id == likedRecentlyId
                       }
                     />
@@ -89,7 +89,7 @@ const FavoriteHeros: FC<{
               )}
               style={{
                 paddingLeft: `${
-                  (width - 300 * (Math.floor(width / 307) || 1)) / 2
+                  (width - 300 * (Math.floor(width / 308) || 1)) / 2
                 }px`,
               }}
             />
